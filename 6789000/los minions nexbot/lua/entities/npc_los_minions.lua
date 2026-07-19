@@ -10,6 +10,7 @@ ENT.JumpSound = Sound("npc_los_minions/jump.mp3")
 ENT.JumpHighSound = Sound("npc_los_minions/spring.mp3")
 ENT.TauntSounds = {
 	Sound("npc_los_minions/pieceofcake.mp3"),
+	Sound("npc_los_minions/banana.mp3"),
 }
 local chaseMusic = Sound("npc_los_minions/panic.mp3")
 

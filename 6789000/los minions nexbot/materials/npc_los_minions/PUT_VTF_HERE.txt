@@ -1,1 +1,0 @@
-Put los_minions.vtf and killicon.vtf here (from PNG via VTFEdit).

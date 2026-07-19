@@ -1,1 +1,0 @@
-Convert your minions texture to VTF (VTFEdit / no_vtf) and name it minions.vtf
