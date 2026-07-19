@@ -1,7 +1,2 @@
--- Los Minions Nextbot - spawn menu registration
-list.Set("NPC", "npc_los_minions", {
-	Name = "Los Minions",
-	Class = "npc_los_minions",
-	Category = "Los Minions Nextbot",
-	IconOverride = "entities/npc_los_minions.png"
-})
+-- Los Minions Nextbot (script adapted from classic Huggy/Smiley nextbot style)
+-- Entity registration is in lua/entities/npc_los_minions.lua

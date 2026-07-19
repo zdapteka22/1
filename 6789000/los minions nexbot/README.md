@@ -60,3 +60,15 @@ Garry's Mod **не читает** `.glb` напрямую. Нужно скомп
 
 - Модель: `models/los_minions/minions.mdl`
 - Звуки: `sound/los_minions/*.mp3`
+
+## Скрипт
+
+`lua/entities/npc_los_minions.lua` — переделан из классического Huggy/Smiley nextbot
+(полный AI: chase, jump, smash props, panic music, killicon).
+
+Звуки (положить в `sound/npc_los_minions/`):
+- `panic.mp3` — музыка погони
+- `jump.mp3` / `spring.mp3` — прыжки
+- `pieceofcake.mp3` — таунт при убийстве
+
+Картинка nextbot: `materials/npc_los_minions/los_minions.vtf` (+ `.vmt` уже есть).
