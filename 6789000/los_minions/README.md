@@ -4,7 +4,7 @@
 
 ## Установка
 
-Скопируй папку `los minions nexbot` в:
+Скопируй папку `los_minions` в:
 
 ```
 Steam/steamapps/common/GarrysMod/garrysmod/addons/
@@ -15,7 +15,7 @@ Steam/steamapps/common/GarrysMod/garrysmod/addons/
 ## Структура
 
 ```
-los minions nexbot/
+los_minions/
 ├── lua/
 │   ├── autorun/los_minions_nextbot.lua
 │   └── entities/npc_los_minions.lua
