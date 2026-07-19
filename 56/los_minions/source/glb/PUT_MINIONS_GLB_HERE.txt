@@ -1,0 +1,6 @@
+Положи файл minions.glb в эту папку:
+
+  source/glb/minions.glb
+
+Потом скомпилируй по инструкции в README.md
+(Blender Source Tools → Crowbar / studiomdl).

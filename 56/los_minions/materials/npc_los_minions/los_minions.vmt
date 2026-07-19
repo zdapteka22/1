@@ -1,0 +1,9 @@
+"UnlitGeneric"
+{
+	"$basetexture" "npc_los_minions/los_minions"
+	"$translucent" "1"
+	"$vertexalpha" "1"
+	"$vertexcolor" "1"
+	"$nolod" "1"
+	"$nofog" "1"
+}

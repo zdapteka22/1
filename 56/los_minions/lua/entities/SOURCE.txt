@@ -1,0 +1,2 @@
+Lua based on classic Huggy/Smiley-style nextbot (Abyss/Smiley template).
+Original ronexbot/huggy folder was not available in the cloud workspace — upload it to refine further.
