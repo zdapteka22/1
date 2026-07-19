@@ -1,0 +1,7 @@
+"AddonInfo"
+{
+	"name"		"Los Minions Nextbot"
+	"version"	"1.0"
+	"author_name"	"Los Minions"
+	"info"		"Minions chase nextbot for Garry's Mod"
+}
