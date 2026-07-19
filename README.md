@@ -4,8 +4,6 @@
 
 Папка аддона:
 
-**`los_minions`**
+**`56/los_minions`**
 
-Путь: `/los_minions`
-
-Установка в GMod: скопируй папку `los_minions` в `garrysmod/addons/`.
+Установка в GMod: скопируй `56/los_minions` в `garrysmod/addons/`.
