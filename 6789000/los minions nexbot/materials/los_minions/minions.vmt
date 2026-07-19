@@ -3,7 +3,4 @@
 	"$basetexture" "los_minions/minions"
 	"$model" "1"
 	"$nocull" "0"
-	"$phong" "1"
-	"$phongboost" "1"
-	"$phongexponent" "20"
 }
