@@ -1,105 +1,62 @@
-# cursor-chat-migrate
+# Перенос чатов Cursor
 
-Перенос чатов Cursor между машинами и аккаунтами.
+Оконное приложение: **аккаунты → чаты внутри → кнопки «Перенести / Открыть / Экспорт»**.
 
-Cursor **не хранит** историю чатов в облачном аккаунте — она лежит локально в SQLite (`state.vscdb`). Этот CLI экспортирует чаты в портативный bundle и импортирует их в данные другого аккаунта/установки.
+Чаты Cursor лежат локально в `state.vscdb`, не в облаке. Добавляете папки разных аккаунтов — и переносите чаты мышкой.
 
-## Установка
+## Быстрый старт
 
 ```bash
+cd путь/к/репозиторию
 python3 -m pip install -e .
-# или без установки:
-python3 -m cursor_chat_migrate --help
+
+# Открыть окошко
+python3 run_gui.py
+# или
+python3 -m cursor_chat_migrate
+# или
+cursor-chat-migrate-gui
 ```
 
-## Перенос с другого аккаунта
+Нужен Python 3.10+ и `tkinter` (на Ubuntu: `sudo apt install python3-tk`).
 
-### 1. На старом аккаунте (откуда забираете)
+## Как пользоваться в окошке
 
-1. Полностью закройте Cursor.
-2. Найдите и экспортируйте чаты:
+1. Запустите приложение — откроется окно.
+2. Слева/в дереве: **название аккаунта**, внутри него — **его чаты**.
+3. **Добавить аккаунт** — укажите папку `User` другого профиля Cursor  
+   (Windows: `%APPDATA%\Cursor\User`, macOS: `~/Library/Application Support/Cursor/User`, Linux: `~/.config/Cursor/User`).  
+   Можно скопировать папку `User` со старого ПК и указать её.
+4. Выберите чат(ы) в одном аккаунте → **Перенести** → выберите аккаунт-получатель и папку проекта.
+5. Полностью закройте и снова откройте Cursor.
+
+Другие кнопки:
+
+| Кнопка | Действие |
+|--------|----------|
+| Открыть папку | Открыть каталог данных выбранного аккаунта |
+| Обновить | Перечитать чаты с диска |
+| Переименовать | Имя аккаунта в списке |
+| Удалить аккаунт | Убрать из приложения (чаты на диске не трогает) |
+| Экспорт в файл | Сохранить выбранные чаты в `.json` |
+| Импорт из файла | Загрузить `.json` в выбранный аккаунт |
+
+Список аккаунтов сохраняется в `~/.cursor-chat-migrate/accounts.json`.
+
+## CLI (по желанию)
 
 ```bash
-# Показать, куда смотрит инструмент
-python3 -m cursor_chat_migrate paths
-
-# Список чатов
+python3 -m cursor_chat_migrate gui
 python3 -m cursor_chat_migrate list
-
-# Экспорт всех
-python3 -m cursor_chat_migrate export --all -o ~/cursor-chats.bundle.json
-
-# Или только один чат
-python3 -m cursor_chat_migrate export --id <composerId> -o ~/one-chat.bundle.json
-
-# Или чаты одного проекта
-python3 -m cursor_chat_migrate export --workspace /path/to/project --all -o ~/project.bundle.json
+python3 -m cursor_chat_migrate export --all -o chats.bundle.json
+python3 -m cursor_chat_migrate import chats.bundle.json --workspace /path/to/project
 ```
-
-3. Скопируйте `*.bundle.json` на машину/профиль нового аккаунта (флешка, облако, мессенджер).
-
-### 2. На новом аккаунте (куда переносите)
-
-1. Войдите в нужный аккаунт Cursor и **полностью закройте** приложение.
-2. Импортируйте bundle в нужный проект:
-
-```bash
-python3 -m cursor_chat_migrate import ~/cursor-chats.bundle.json \
-  --workspace /path/to/same-or-new-project
-```
-
-3. Снова откройте Cursor (обычного Reload Window недостаточно).
-4. Откройте указанный проект — импортированные чаты должны появиться в списке.
-
-Перед записью инструмент делает backup `state.vscdb` рядом с БД (или в `--backup-dir`).
-
-## Полезные команды
-
-| Команда | Назначение |
-|--------|------------|
-| `paths` | Путь к `User/` текущего Cursor |
-| `workspaces` | Список workspaceStorage |
-| `list [--workspace …] [--json]` | Чаты |
-| `export --all/-o/--id` | Выгрузка |
-| `import bundle --workspace …` | Загрузка |
-| `import … --dry-run` | Проверка без записи |
-
-### Свой путь к данным Cursor
-
-```bash
-# macOS
-python3 -m cursor_chat_migrate --user-dir "$HOME/Library/Application Support/Cursor/User" list
-
-# Linux
-python3 -m cursor_chat_migrate --user-dir "$HOME/.config/Cursor/User" list
-
-# Windows (PowerShell)
-python -m cursor_chat_migrate --user-dir "$env:APPDATA\Cursor\User" list
-```
-
-Или переменная окружения: `CURSOR_USER_DIR`.
-
-## Что переносится
-
-- Метаданные чата (`composerData`)
-- Сообщения (`bubbleId`)
-- Checkpoints агента (`checkpointId`)
-- Request context и content-blobs, если есть
-- Привязка к workspace (Cursor 3.0 `composer.composerHeaders` + selected tabs)
-
-При импорте создаются **новые UUID**, поэтому один и тот же bundle можно импортировать повторно без конфликтов.
-
-## Чего инструмент не делает
-
-- Не читает чаты «из облака другого аккаунта» — нужен доступ к файлам старого профиля Cursor на диске.
-- Не переносит cloud agent runs с `cursor.com/agents` между аккаунтами (это серверные объекты).
-- Не гарантирует продолжение агент-сессии, если checkpoint-пути ссылались на другую машину — **история сообщений** при этом читается.
 
 ## Тесты
 
 ```bash
 python3 -m pip install -e ".[dev]"
-pytest -q
+python3 -m pytest -q
 ```
 
 ## License

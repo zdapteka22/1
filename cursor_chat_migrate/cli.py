@@ -133,12 +133,18 @@ def cmd_import(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_gui(_args: argparse.Namespace) -> int:
+    from .gui import run_gui
+
+    return run_gui()
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="cursor-chat-migrate",
         description=(
-            "Export/import Cursor IDE chats between machines or accounts. "
-            "Chats live in local SQLite (state.vscdb), not in the cloud account."
+            "Окно и CLI для переноса чатов Cursor между аккаунтами. "
+            "Без аргументов открывается графический интерфейс."
         ),
     )
     parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
@@ -149,6 +155,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
 
     sub = parser.add_subparsers(dest="command", required=True)
+
+    p_gui = sub.add_parser("gui", help="Открыть окошко с аккаунтами и кнопками")
+    p_gui.set_defaults(func=cmd_gui)
 
     p_paths = sub.add_parser("paths", help="Show detected Cursor data paths")
     p_paths.set_defaults(func=cmd_paths)

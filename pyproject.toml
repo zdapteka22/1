@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cursor-chat-migrate"
-version = "1.0.0"
-description = "Export and import Cursor IDE chats between machines and accounts"
+version = "1.1.0"
+description = "GUI and CLI to transfer Cursor IDE chats between accounts"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -13,7 +13,8 @@ authors = [{ name = "cursor-chat-migrate" }]
 dependencies = []
 
 [project.scripts]
-cursor-chat-migrate = "cursor_chat_migrate.cli:main"
+cursor-chat-migrate = "cursor_chat_migrate.__main__:main"
+cursor-chat-migrate-gui = "cursor_chat_migrate.gui:main"
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0"]
