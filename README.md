@@ -6,16 +6,20 @@
 
 ## Быстрый старт
 
+### Windows
+
+1. Установите [Python 3.10+](https://www.python.org/downloads/) (галочка **Add to PATH**).
+2. Скачайте/откройте папку репозитория.
+3. Дважды кликните **`Запустить.bat`** (или `start.bat`).
+
+Откроется окошко с аккаунтами и чатами.
+
+### Linux / macOS
+
 ```bash
 cd путь/к/репозиторию
 python3 -m pip install -e .
-
-# Открыть окошко
 python3 run_gui.py
-# или
-python3 -m cursor_chat_migrate
-# или
-cursor-chat-migrate-gui
 ```
 
 Нужен Python 3.10+ и `tkinter` (на Ubuntu: `sudo apt install python3-tk`).
