@@ -1,0 +1,11 @@
+Проверка переноса чатов Cursor
+OK  Аккаунт A создан: /tmp/auto-verify-14oj0qlp/A/Cursor/User
+OK  В A найден чат: 'Source chat', сообщений=2
+OK  Экспорт в файл: /tmp/auto-verify-14oj0qlp/export.bundle.json (2498 байт)
+OK  Аккаунт B создан: /tmp/auto-verify-14oj0qlp/B/CursorDest/User
+OK  Dry-run импорт: will import 1 chat(s)
+OK  Импорт A→B: чат «Source chat», новый id=b5202169…
+OK  Обратный экспорт из B: reverse.bundle.json
+OK  Обратный импорт B→C: сообщений=2, текст сохранён
+
+ВСЁ РАБОТАЕТ
